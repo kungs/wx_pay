@@ -1,4 +1,5 @@
 require 'digest/md5'
+require 'digest/sha1'
 
 module WxPay
   module Sign
@@ -9,7 +10,7 @@ module WxPay
         "#{key}=#{value}"
       end.join('&')
 
-      Digest::MD5.hexdigest("#{query}&key=#{key || WxPay.key}").upcase
+      Digest::SHA1.hexdigest("#{query}&key=#{key || WxPay.key}").upcase
     end
 
     def self.verify?(params)
